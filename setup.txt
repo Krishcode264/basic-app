@@ -1,5 +1,6 @@
 # Dummy Project - Docker and Jenkins Setup Guide
-
+//docker-compose down
+docker-compose up --build -d
 ## Project Structure
 - backend/: Node.js backend exposing a JSON API on port 5000
 - frontend/: React/Vite frontend displaying the web interface on port 8080
