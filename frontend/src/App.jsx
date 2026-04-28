@@ -55,7 +55,7 @@ function ProductGrid({ fetchUrl, title, description, mapData }) {
 }
 
 function LocalBackendProducts() {
-  const fetchUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api/products';
+  const fetchUrl = import.meta.env.VITE_API_URL || 'http://localhost:5050/api/products';
   return <ProductGrid 
     fetchUrl={fetchUrl} 
     title="Local Node API" 

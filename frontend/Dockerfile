@@ -1,10 +1,10 @@
 # Build stage
-FROM node:18-alpine as build
+FROM node:20-alpine as build
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
-ENV VITE_API_URL=http://localhost:5000/api/products
+ENV VITE_API_URL=http://localhost:5050/api/products
 RUN npm run build
 
 # Serve stage using nginx

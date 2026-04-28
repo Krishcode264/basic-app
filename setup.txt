@@ -2,7 +2,7 @@
 //docker-compose down
 docker-compose up --build -d
 ## Project Structure
-- backend/: Node.js backend exposing a JSON API on port 5000
+- backend/: Node.js backend exposing a JSON API on port 5050
 - frontend/: React/Vite frontend displaying the web interface on port 8080
 - docker-compose.yml: Orchestrates both containers
 
@@ -16,7 +16,7 @@ To run both the backend and frontend in their respective containers:
 2. From the root directory (where docker-compose.yml is located), run:
    docker-compose up --build -d
 
-You can access the backend at http://localhost:5000 and the frontend at http://localhost:8080.
+You can access the backend at http://localhost:5050 and the frontend at http://localhost:8080.
 
 ## Jenkins Setup Guide
 
