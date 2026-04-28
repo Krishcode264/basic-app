@@ -6,7 +6,7 @@ function ProductGrid({ fetchUrl, title, description, mapData }) {
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
-
+// some chnages 
   useEffect(() => {
     setLoading(true);
     setError(null);
@@ -33,7 +33,7 @@ function ProductGrid({ fetchUrl, title, description, mapData }) {
         <p>{description}</p>
       </header>
 
-      {loading && <div className="loading">Loading amazing products...</div>}
+      {loading && <div className="loading">Loading amazing  products...</div>}
       
       {error && <div className="error">{error}</div>}
 
@@ -62,6 +62,8 @@ function LocalBackendProducts() {
     description="Premium gear from our custom Node.js backend Docker container." 
   />;
 }
+
+// some chnages with commebnt 
 
 function ExternalApiProducts() {
   const fetchUrl = 'https://fakestoreapi.com/products';
