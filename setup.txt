@@ -1,0 +1,73 @@
+# Dummy Project - Docker and Jenkins Setup Guide
+
+## Project Structure
+- backend/: Node.js backend exposing a JSON API on port 5000
+- frontend/: React/Vite frontend displaying the web interface on port 8080
+- docker-compose.yml: Orchestrates both containers
+
+## Running Locally Manually
+1. cd backend && npm install && node server.js
+2. In a new terminal: cd frontend && npm install && npm run dev
+
+## Running with Docker Compose
+To run both the backend and frontend in their respective containers:
+1. Make sure Docker is installed and running on your system.
+2. From the root directory (where docker-compose.yml is located), run:
+   docker-compose up --build -d
+
+You can access the backend at http://localhost:5000 and the frontend at http://localhost:8080.
+
+## Jenkins Setup Guide
+
+1. Jenkins Requirements:
+   - Jenkins server installed with Docker and Docker Pipeline plugins.
+   - The user running Jenkins must have permission to execute Docker commands (usually added to the `docker` group).
+
+2. Creating the Jenkins Pipeline:
+   - Go to Jenkins Dashboard > New Item > Pipeline.
+   - Name it "DummyProject-Build" or similar.
+   - In the Pipeline definition, you can use the following Declarative Pipeline script.
+
+```groovy
+pipeline {
+    agent any
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                // Replace with your actual repository URL if using source control
+                // git 'https://github.com/your-username/dummy-project.git'
+                echo "Checked out source code"
+            }
+        }
+        
+        stage('Build API Backend') {
+            steps {
+                dir('backend') {
+                    sh 'docker build -t dummy-backend:latest .'
+                }
+            }
+        }
+        
+        stage('Build React Frontend') {
+            steps {
+                dir('frontend') {
+                    sh 'docker build -t dummy-frontend:latest .'
+                }
+            }
+        }
+        
+        stage('Deploy with Docker Compose') {
+            steps {
+                // This assumes docker-compose is available on the Jenkins agent
+                sh 'docker-compose down || true' // stop previous if running
+                sh 'docker-compose up -d'
+            }
+        }
+    }
+}
+```
+
+3. Post-build Steps:
+   - You can add testing stages after the builds or before the deployment.
+   - Access the deployed application by checking the server's IP address at port 8080.
